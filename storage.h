@@ -1,8 +1,3 @@
-
-//
-// Created by brian on 2017/5/28.
-//
-
 #ifndef PROJECT3_STORAGE_H
 #define PROJECT3_STORAGE_H
 

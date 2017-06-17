@@ -1,10 +1,12 @@
-#pragma once
+#ifndef PROJECT3_POLYNOMIAL_H
+#define PROJECT3_POLYNOMIAL_H
 
 #include<string>
 #include<initializer_list>
 #include<vector>
 #include<iostream>
 #include<stdexcept>
+#include "io_helper.h"
 
 //多项式中的某一项
 class Term {
@@ -43,8 +45,8 @@ private:
 class Polynomial {
 public:
     //字符串解析失败的异常
-    struct PolynomialFormatException: std::runtime_error {
-        PolynomialFormatException(): std::runtime_error("多项式格式不合法") {}
+    struct PolynomialFormatException: FormatException {
+        PolynomialFormatException(const std::string& str): FormatException(str, "多项式") {}
     };
 
     //无参构造函数，构造一个空的多项式，即常数0。
@@ -93,3 +95,4 @@ private:
     //对多项式进行整理。即按幂降序排序，合并同类型，并删除系数为0的项。
     void arrange();
 };
+#endif //PROJECT3_POLYNOMIAL_H

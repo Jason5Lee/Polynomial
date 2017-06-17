@@ -56,7 +56,7 @@ Polynomial Polynomial::parse(const string &expr) {
         switch (sscanf(ptr, " (%lf,%d %c", &coefficient, &degree, &end)) {
             case 3:
                 if (end != ')')
-                    throw PolynomialFormatException();
+                    throw PolynomialFormatException(expr);
                 result.poly.push_back(Term(coefficient, degree));
                 while (*(ptr++) != ')');
                 break;
@@ -64,7 +64,7 @@ Polynomial Polynomial::parse(const string &expr) {
                 result.arrange();
                 return result;
             default:
-                throw PolynomialFormatException();
+                throw PolynomialFormatException(expr);
         }
     }
 }
