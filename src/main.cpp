@@ -1,19 +1,16 @@
-// Project3.cpp : Defines the entry point for the console application.
-//e
-//#if false
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <stdexcept>
-#include <cctype>
 #include <iomanip>
+#include <utility>
 #include "polynomial.h"
 #include "storage.h"
 
 using namespace std;
 
 //用于返回主菜单的异常。
-class BackToMenuException {
+class BackToMenuException : exception {
 };
 
 //删除字符串首尾的空白字符
@@ -49,7 +46,7 @@ T Read(const string &prompt, U parse) {
 template<typename T>
 class GenericParse {
 public:
-    GenericParse(const string &typeName) : typeName(typeName) {}
+    explicit GenericParse(string typeName) : typeName(std::move(typeName)) {}
 
     T operator()(const string &str) {
         stringstream ss;
@@ -127,7 +124,7 @@ int main() {
                 printHelp();
             else if (choice == 5) {
                 Polynomial pol = Read<Polynomial>("请输入多项式:", PolynomialParse);
-                double factor = Read<double>("请输入代入的x的值:", GenericParse<double>("实数"));
+                auto factor = Read<double>("请输入代入的x的值:", GenericParse<double>("实数"));
                 cout << "代入后计算的值:" << pol(factor) << endl;
             } else if (choice == 8) {
                 cout << "当前储存的多项式如下：" << endl
@@ -143,7 +140,7 @@ int main() {
             } else {
                 Polynomial result;
                 if (choice == 3) {
-                    double factor = Read<double>("请输入常数：", GenericParse<double>("实数"));
+                    auto factor = Read<double>("请输入常数：", GenericParse<double>("实数"));
                     Polynomial rhs = Read<Polynomial>("请输入多项式：", PolynomialParse);
                     result = factor * rhs;
                 } else if (choice == 7) {
@@ -178,4 +175,3 @@ int main() {
 
     return 0;
 }
-//#endif
