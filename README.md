@@ -1,11 +1,5 @@
-This program is developped by CLion.
+# Polynomial
 
-Compile command:
+A polynomial library and a CLI-based calculator application.
 
-g++ polynomial.cpp main.cpp -o main -std=c++11
-
-Run command:
-
-./main
-
-Source code is encoded with UTF-8.
+It uses object-oriented programming to represent polynomials and their operations. Templates and some features in C++11 such as lambda expressions are used.

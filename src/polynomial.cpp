@@ -1,4 +1,4 @@
-#include "polynomial.h"
+#include "polynomial.hpp"
 #include<algorithm>
 #include<initializer_list>
 #include<cmath>
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-//判断x是否足够小可以认为为0
+// Determine if x is small enough to be considered 0.
 bool isZero(double x) {
     const double eps = 1e-7;
     return fabs(x) < eps;
@@ -138,7 +138,7 @@ ostream &operator<<(ostream &out, const Polynomial &p) {
 
 void Polynomial::arrange() {
     if (!empty()) {
-        //将多项式按照次数从大到小排序
+        // Sort polynomials in descending order of degree.
         sort(poly.begin(), poly.end(), [](const Term &a, const Term &b) {
             return a.getDegree() > b.getDegree();
         });
